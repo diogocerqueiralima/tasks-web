@@ -23,7 +23,7 @@ export default function RootLayout({
   const oAuthConfig = {
     authorizeUri: "http://localhost:9000/oauth2/authorize",
     tokenUri: "http://localhost:9000/oauth2/token",
-    clientId: "tasks-react",
+    clientId: "tasks-web",
     redirectUri: "http://localhost:3000/login",
     scopes: ["openid"]
   }
