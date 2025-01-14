@@ -1,0 +1,36 @@
+.header {
+
+    padding: 30px 0;
+    background-color: var(--foreground);
+    font-size: 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+
+}
+
+.header img {
+
+    width: 45px;
+    background-color: black;
+    border-radius: 100%;
+    padding: 10px;
+
+}
+
+.header ul {
+
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 20px;
+
+}
+
+.header ul li {
+
+    cursor: pointer;
+
+}
