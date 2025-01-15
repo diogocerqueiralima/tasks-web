@@ -22,7 +22,7 @@ export default function Header() {
 
         <header className={styles.header}>
 
-            <img src="vercel.svg"></img>
+            <img src="logo.webp"></img>
             
             <ul>
 
