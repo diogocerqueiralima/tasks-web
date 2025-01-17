@@ -47,7 +47,7 @@ export function AuthenticationProvider({ children, oAuthConfig }: { children: Re
 
   const logout = () => {
 
-    window.location.href = "http://localhost:9000/logout"
+    window.location.href = `http://localhost:3000`
 
   }
 
