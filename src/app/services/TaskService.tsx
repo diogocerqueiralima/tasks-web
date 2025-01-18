@@ -1,13 +1,23 @@
 import Task from "../domain/Task"
 
-function getAllTasks(token: string): Promise<Task[]> {
+function getAllTasks(): Promise<Task[]> {
 
     return fetch('http://localhost:8080/tasks', {
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
+        redirect: "manual",
+        credentials: "include"
     })
-        .then(response => response.json())
+        .then(response => {
+
+            if (response.status == 0) {
+
+                if (location) {
+                    window.location.href = "http://localhost:8080"
+                }
+
+            }
+
+            return response.json()
+        })
         .then(response => response.data)
 
 }
