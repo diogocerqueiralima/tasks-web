@@ -5,6 +5,7 @@ import Header from '../components/header/Header'
 import styles from './page.module.css'
 import TaskService from '../services/TaskService'
 import Task from '../domain/Task'
+import Loader from '../components/loader/Loader'
 
 export default function Tasks() {
 
@@ -17,7 +18,6 @@ export default function Tasks() {
             .then(data => {
                 setTasks(data)
                 setIsLoading(false)
-                console.log(data)
             })
             .catch(() => {})
 
@@ -29,7 +29,7 @@ export default function Tasks() {
 
             <Header />
 
-            { isLoading && <p>Loading...</p> }
+            { isLoading && <Loader /> }
 
             { !isLoading &&
 
