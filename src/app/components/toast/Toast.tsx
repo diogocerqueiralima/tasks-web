@@ -4,31 +4,28 @@ import 'boxicons/css/boxicons.min.css';
 
 export default function Toast( { message, icon, time, removeToast }: { message: string, icon: string, time: number, removeToast: () => void } ) {
 
-    const [timeElapsed, setTimeElapsed] = useState(0);
     const [progress, setProgress] = useState(100);
     const [isVisible, setIsVisible] = useState(true);
 
     useEffect(() => {
 
+        const startTime = Date.now();
+
         const interval = setInterval(() => {
 
-            setTimeElapsed((prev) => {
+            const elapsed = Date.now() - startTime;
+            const newProgress = Math.max(100 - (elapsed / time) * 100, 0);
+            
+            setProgress(newProgress);
 
-                const newTimeElapsed = prev + 100;
-                const newProgress = Math.max(100 - (newTimeElapsed / time) * 100, 0);
-
-                setProgress(newProgress);
-
-                if (newProgress <= 0) {
-                    setIsVisible(false);
-                    removeToast();
-                    clearInterval(interval)
-                }
-
-                return newTimeElapsed;
-            });
+            if (elapsed >= time) {
+                setIsVisible(false);
+                removeToast();
+            }
 
         }, 100);
+
+        return () => clearInterval(interval);
 
     }, []);
 
