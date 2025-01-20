@@ -18,14 +18,16 @@ export default function Tasks() {
 
     useEffect(() => {
 
+        console.log("asds")
+
         TaskService.getAllTasks()
             .then(data => {
                 setTasks(data)
                 setIsLoading(false)
             })
             .catch(() => {
-                setIsLoading(false)
                 setError(true)
+                setIsLoading(false)
             })
 
     }, [])
@@ -36,7 +38,7 @@ export default function Tasks() {
 
             <Header />
 
-            { error && <Toast icon='bx bxs-error' message='An unexpected error has occurred' time={5000} removeToast={() => { router.push("/") }} /> }
+            { error && !isLoading && <Toast icon='bx bxs-error' message='An unexpected error has occurred' time={5000} removeToast={() => { router.push("/") }} /> }
 
             { isLoading && <Loader /> }
 

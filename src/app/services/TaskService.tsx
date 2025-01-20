@@ -9,12 +9,8 @@ function getAllTasks(): Promise<Task[]> {
         .then(response => {
 
             if (response.status == 0) {
-
-                if (location) {
-                    window.location.href = "http://localhost:8080"
-                    return { data: [] }
-                }
-
+                window.location.href = "http://localhost:8080"
+                return { data: [] }
             }
 
             return response.json()
