@@ -40,9 +40,9 @@ export default function Tasks() {
 
             { isLoading && <Loader /> }
 
-            { !isLoading && !error &&
+            { !isLoading && !error && tasks.length > 0 &&
 
-                <Pagination items={tasks} itemsPerPage={5} renderItem={(item) => <TaskItem task={item} />} />
+                <Pagination items={tasks} itemsPerPage={3} renderItem={(item) => <TaskItem task={item} />} />
 
             }
 
