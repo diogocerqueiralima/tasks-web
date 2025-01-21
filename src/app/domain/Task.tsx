@@ -7,8 +7,9 @@ export default class Task {
     deadline: Date
     steps: number[]
     status: Status
+    tags: Tag[]
 
-    constructor(id: number, title: string, description: string, created_at: Date, deadline: Date, steps: number[], status: Status) {
+    constructor(id: number, title: string, description: string, created_at: Date, deadline: Date, steps: number[], status: Status, tags: Tag[]) {
         this.id = id
         this.title = title
         this.description = description
@@ -16,6 +17,7 @@ export default class Task {
         this.deadline = deadline
         this.steps = steps
         this.status = status
+        this.tags = tags
       }
 
       getEmojiStatus(): string {
@@ -41,4 +43,14 @@ export enum Status {
     IN_PROGRESS = "IN_PROGRESS",
     COMPLETED = "COMPLETED"
 
+}
+
+export enum Tag {
+    PERSONAL = "PERSONAL", 
+    WORK = "WORK", 
+    STUDY = "STUDY", 
+    PROJECT = "PROJECT", 
+    FAMILY = "FAMILY", 
+    HEALTH = "HEALTH", 
+    FINANCE = "FINANCE"
 }

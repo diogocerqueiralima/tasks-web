@@ -1,4 +1,4 @@
-import { Status } from "../domain/Task"
+import { Status, Tag } from "../domain/Task"
 
 export default interface TaskDto {
 
@@ -9,5 +9,6 @@ export default interface TaskDto {
     deadline: string
     steps: number[]
     status: Status
+    tags: Tag[]
 
 }

@@ -18,6 +18,11 @@ export default function TaskItem( { task }: { task: Task } ) {
                     Deadline: { task.deadline.toLocaleDateString() } { task.deadline.toLocaleTimeString() }
                 </p>
 
+                <p className={styles.tags}>
+                    <i className='bx bx-purchase-tag'></i>
+                    { task.tags.map(tag => <span key={tag}>{ tag.toLowerCase() }</span>) }
+                </p>
+
                 <p className={styles.description}>
                     { task.description }
                 </p>

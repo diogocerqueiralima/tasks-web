@@ -7,7 +7,7 @@
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     background-color: var(--foreground);
-
+    
 }
 
 .content {
@@ -52,7 +52,7 @@
 
 }
 
-.navigation button:hover {
+.navigation button:enabled:hover {
 
     cursor: pointer;
     opacity: 0.8;

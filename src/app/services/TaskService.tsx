@@ -16,7 +16,7 @@ function getAllTasks(): Promise<Task[]> {
 
             return response.json()
         })
-        .then((response: { data: TaskDto[] }) => response.data.map(dto => new Task(dto.id, dto.title, dto.description, new Date(dto.created_at), new Date(dto.deadline), dto.steps, dto.status)))
+        .then((response: { data: TaskDto[] }) => response.data.map(dto => new Task(dto.id, dto.title, dto.description, new Date(dto.created_at), new Date(dto.deadline), dto.steps, dto.status, dto.tags)))
 
 }
 

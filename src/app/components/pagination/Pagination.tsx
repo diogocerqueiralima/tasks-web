@@ -1,4 +1,4 @@
-import { JSX, useState } from 'react'
+import { JSX, useEffect, useState } from 'react'
 import styles from './page.module.css'
 
 export default function Pagination<T extends { id: string | number }>( { items, itemsPerPage, renderItem }: { items: T[], itemsPerPage: number, renderItem: (item: T) => JSX.Element } ) {
@@ -38,19 +38,22 @@ export default function Pagination<T extends { id: string | number }>( { items, 
 
     const getTotalPages = () => Math.ceil(items.length / itemsPerPage);
 
+    const getItems = () => 
+        items.filter((item, index) => index >= (currentPage - 1) * itemsPerPage && index < currentPage * itemsPerPage)
+
     return (
 
         <div className={styles.pagination}>
 
             <div className={styles.content}>
-                { items.map(item => <div key={item.id} className={styles.item}> { renderItem(item) } </div>) }
+                { getItems().map(item => <div key={item.id} className={styles.item}> { renderItem(item) } </div>) }
             </div>
 
             <div className={styles.navigation}>
 
-                <button className={styles.previous} disabled={!hasPreviousPage()}>Previous</button>
+                <button className={styles.previous} disabled={!hasPreviousPage()} onClick={previousPage}>Previous</button>
                 <span> Page { currentPage } of { getTotalPages() } </span>
-                <button className={styles.next} disabled={!hasNextPage()} >Next</button>
+                <button className={styles.next} disabled={!hasNextPage()} onClick={nextPage} >Next</button>
 
             </div>
 
