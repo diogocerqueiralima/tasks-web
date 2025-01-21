@@ -1,0 +1,74 @@
+.task {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.left {
+    
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+}
+
+.right {
+
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+}
+
+.task button {
+
+    border: none;
+    padding: 5px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: 0.5s;
+
+}
+
+.task button:hover {
+
+    cursor: pointer;
+    opacity: 0.8;
+
+}
+
+.steps {
+
+    background-color: #0c78ad;
+
+}
+
+.edit {
+
+    background-color: #ffc107;
+
+}
+
+.delete {
+
+    background-color: #dc3545;
+
+}
+
+.title {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+
+}
+
+.description {
+
+    margin-top: 10px;
+
+}

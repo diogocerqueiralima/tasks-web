@@ -1,4 +1,5 @@
 import Task from "../domain/Task"
+import TaskDto from "../dto/TaskDto"
 
 function getAllTasks(): Promise<Task[]> {
 
@@ -15,7 +16,7 @@ function getAllTasks(): Promise<Task[]> {
 
             return response.json()
         })
-        .then(response => response.data)
+        .then((response: { data: TaskDto[] }) => response.data.map(dto => new Task(dto.id, dto.title, dto.description, new Date(dto.created_at), new Date(dto.deadline), dto.steps, dto.status)))
 
 }
 

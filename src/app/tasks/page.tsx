@@ -8,6 +8,8 @@ import Task from '../domain/Task'
 import Loader from '../components/loader/Loader'
 import Toast from '../components/toast/Toast'
 import { useRouter } from 'next/navigation'
+import TaskItem from '../components/task/TaskItem'
+import Pagination from '../components/pagination/Pagination'
 
 export default function Tasks() {
 
@@ -17,8 +19,6 @@ export default function Tasks() {
     const router = useRouter()
 
     useEffect(() => {
-
-        console.log("asds")
 
         TaskService.getAllTasks()
             .then(data => {
@@ -34,9 +34,7 @@ export default function Tasks() {
 
     return (
 
-        <div>
-
-            <Header />
+        <div className={styles.tasks}>
 
             { error && !isLoading && <Toast icon='bx bxs-error' message='An unexpected error has occurred' time={5000} removeToast={() => { router.push("/") }} /> }
 
@@ -44,11 +42,7 @@ export default function Tasks() {
 
             { !isLoading && !error &&
 
-                <ul>
-
-                    { tasks.map(task => <li key={task.id}> { task.title } </li> ) }
-
-                </ul>
+                <Pagination items={tasks} itemsPerPage={5} renderItem={(item) => <TaskItem task={item} />} />
 
             }
 

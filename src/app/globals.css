@@ -29,6 +29,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.content {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  margin: 40px auto;
+  flex: 1;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;

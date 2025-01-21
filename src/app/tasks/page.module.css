@@ -1,0 +1,10 @@
+.tasks {
+
+    margin: 80px auto;
+    width: 60%;
+
+}
+
+.tasks ul {
+    list-style: none;
+}
