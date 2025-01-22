@@ -42,7 +42,7 @@ export default function Tasks() {
 
             { !isLoading && !error && tasks.length > 0 &&
 
-                <Pagination items={tasks} itemsPerPage={3} renderItem={(item) => <TaskItem task={item} />} />
+                <Pagination title="My tasks" items={tasks} itemsPerPage={3} renderItem={(item) => <TaskItem task={item} />} />
 
             }
 

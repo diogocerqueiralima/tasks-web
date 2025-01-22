@@ -1,9 +1,10 @@
 import { JSX, useEffect, useState } from 'react'
 import styles from './page.module.css'
 
-export default function Pagination<T extends { id: string | number }>( { items, itemsPerPage, renderItem }: { items: T[], itemsPerPage: number, renderItem: (item: T) => JSX.Element } ) {
+export default function Pagination<T extends { id: string | number, title: string }>( { title, items, itemsPerPage, renderItem }: { title: string, items: T[], itemsPerPage: number, renderItem: (item: T) => JSX.Element } ) {
 
     const [currentPage, setCurrentPage] = useState(1)
+    const [search, setSearch] = useState("")
 
     const nextPage = () => {
 
@@ -31,19 +32,41 @@ export default function Pagination<T extends { id: string | number }>( { items, 
 
     const hasNextPage = () => {
         const currentItems = currentPage * itemsPerPage
-        return currentItems < items.length
+        return currentItems < getItemsFilterBySearch().length
     }
 
     const hasPreviousPage = () => currentPage > 1
 
-    const getTotalPages = () => Math.ceil(items.length / itemsPerPage);
+    const getTotalPages = () => Math.ceil(getItemsFilterBySearch().length / itemsPerPage);
+
+    const getItemsFilterBySearch = () =>
+        items
+            .filter(item => item.title.toLowerCase().includes(search.toLowerCase()))
 
     const getItems = () => 
-        items.filter((item, index) => index >= (currentPage - 1) * itemsPerPage && index < currentPage * itemsPerPage)
+        getItemsFilterBySearch()
+            .filter((item, index) => index >= (currentPage - 1) * itemsPerPage && index < currentPage * itemsPerPage)
 
     return (
 
         <div className={styles.pagination}>
+
+            <div className={styles.header}>
+                
+                <span>{ title }</span>
+
+                <div className={styles.manage}>
+
+                    <div className={styles.search}>
+                        <i className='bx bx-search' ></i>
+                        <input type='text' placeholder='Search task' onChange={(e) => { setSearch(e.target.value); setCurrentPage(1) }} />
+                    </div>
+
+                    <button>Add task</button>
+
+                </div>
+
+            </div>
 
             <div className={styles.content}>
                 { getItems().map(item => <div key={item.id} className={styles.item}> { renderItem(item) } </div>) }
