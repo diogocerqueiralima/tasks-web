@@ -81,3 +81,40 @@
     margin-top: 10px;
 
 }
+
+@media only screen and (max-width: 1280px) {
+
+    .task {
+
+        flex-flow: column;
+        gap: 30px;
+
+    }
+
+    .title {
+
+        flex-flow: column;
+        justify-content: center;
+
+    }
+
+    .title h3 {
+
+        text-align: center;
+
+    }
+
+    .left {
+
+        justify-content: center;
+        gap: 10px;
+
+    }
+
+    .right {
+
+        justify-content: center;
+
+    }
+
+}

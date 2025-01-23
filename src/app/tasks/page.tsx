@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import Header from '../components/header/Header'
 import styles from './page.module.css'
 import TaskService from '../services/TaskService'
 import Task from '../domain/Task'

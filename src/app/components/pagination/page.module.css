@@ -126,3 +126,36 @@
     font-size: inherit;
 
 }
+
+@media only screen and (max-width: 1280px) {
+
+    .navigation {
+
+        flex-flow: column;
+        justify-content: center;
+        gap: 20px;
+
+    }
+
+    .header {
+
+        flex-flow: column;
+        justify-content: center;
+        gap: 10px;
+
+    }
+
+    .pagination {
+
+        justify-content: center;
+
+    }
+
+    .manage {
+
+        flex-flow: column;
+        justify-content: center;
+
+    }
+
+}
