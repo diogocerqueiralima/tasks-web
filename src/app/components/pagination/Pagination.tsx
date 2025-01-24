@@ -1,7 +1,7 @@
 import { JSX, useEffect, useState } from 'react'
 import styles from './page.module.css'
 
-export default function Pagination<T extends { id: string | number, title: string }>( { title, items, itemsPerPage, renderItem }: { title: string, items: T[], itemsPerPage: number, renderItem: (item: T) => JSX.Element } ) {
+export default function Pagination<T extends { id: string | number, title: string }>( { title, items, itemsPerPage, renderItem, onOpen }: { title: string, items: T[], itemsPerPage: number, renderItem: (item: T) => JSX.Element, onOpen: () => void } ) {
 
     const [currentPage, setCurrentPage] = useState(1)
     const [search, setSearch] = useState("")
@@ -62,7 +62,7 @@ export default function Pagination<T extends { id: string | number, title: strin
                         <input type='text' placeholder='Search task' onChange={(e) => { setSearch(e.target.value); setCurrentPage(1) }} />
                     </div>
 
-                    <button>Add task</button>
+                    <button onClick={onOpen}>Add task</button>
 
                 </div>
 
