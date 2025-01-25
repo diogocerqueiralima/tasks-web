@@ -15,7 +15,7 @@ export default function TaskItem( { task }: { task: Task } ) {
                 </div>
 
                 <p>
-                    Deadline: { task.deadline.toLocaleDateString() } { task.deadline.toLocaleTimeString() }
+                    Deadline: { task.deadline.toLocaleDateString() }
                 </p>
 
                 <p className={styles.tags}>

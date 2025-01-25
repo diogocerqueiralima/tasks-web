@@ -56,15 +56,18 @@ export class StringArrayField implements Field<string[]> {
 
     name: string
     value: string[]
+    valuesToSelect: string[]
     setValue: (value: string[]) => void
 
     constructor(
         name: string,
         value: string[],
+        valuesToSelect: string[],
         setValue: (value: string[]) => void
     ) {
         this.name = name
         this.value = value
+        this.valuesToSelect = valuesToSelect
         this.setValue = setValue
     }
 
@@ -72,9 +75,9 @@ export class StringArrayField implements Field<string[]> {
 
         return (
 
-            <select className={styles.select} key={this.name} id={this.name}>
+            <select className={styles.select} key={this.name} id={this.name} value={this.value} onChange={e => this.setValue(Array.from(e.target.selectedOptions).map(o => o.value))} multiple size={2}>
                 
-                { this.value.map(v => <option key={v} className={styles.option} value={v}>{v}</option>) }
+                { this.valuesToSelect.map(v => <option key={v} className={styles.option} value={v}>{v}</option>) }
 
             </select>
 
@@ -84,7 +87,7 @@ export class StringArrayField implements Field<string[]> {
 
 }
 
-export default function Form( { title, fields, onClose }: { title: string, fields: (StringField | StringArrayField)[], onClose: () => void } ) {
+export default function Form( { title, fields, onClose, onSave }: { title: string, fields: (StringField | StringArrayField)[], onClose: () => void, onSave: () => void } ) {
 
     const [isClosing, setIsClosing] = useState(false)
 
@@ -114,7 +117,7 @@ export default function Form( { title, fields, onClose }: { title: string, field
                     {fields.map((f) => f.render())}
                 </div>
 
-                <button>Save</button>
+                <button onClick={onSave}>Save</button>
 
             </div>
 

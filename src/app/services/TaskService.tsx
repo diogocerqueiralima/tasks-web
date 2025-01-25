@@ -20,8 +20,41 @@ function getAllTasks(): Promise<Task[]> {
 
 }
 
+function createTask(title: string, description: string, deadline: string, tags: string[]) {
+
+    return fetch('http://localhost:8080/tasks', {
+        method: "POST",
+        redirect: "manual",
+        credentials: "include",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(
+            {
+                title,
+                description,
+                deadline: deadline + "T00:00:00",
+                tags
+            }
+        )
+    })
+        .then(response => {
+
+            if (response.status == 0) {
+                window.location.href = "http://localhost:8080"
+                return { data: [] }
+            }
+
+            return response.json()
+        })
+        .then(() => window.location.href = "/tasks")
+
+
+}
+
 export const TaskService = {
-    getAllTasks
+    getAllTasks,
+    createTask
 }
 
 export default TaskService
