@@ -49,12 +49,32 @@ function createTask(title: string, description: string, deadline: string, tags: 
         })
         .then(() => window.location.href = "/tasks")
 
+}
+
+function deleteTask(id: number) {
+
+    return fetch('http://localhost:8080/tasks/' + id, {
+        method: "DELETE",
+        redirect: "manual",
+        credentials: "include"
+    })
+        .then(response => {
+
+            if (response.status == 0) {
+                window.location.href = "http://localhost:8080"
+                return { data: [] }
+            }
+
+            return response.json()
+        })
+        .then(() => window.location.href = "/tasks")
 
 }
 
 export const TaskService = {
     getAllTasks,
-    createTask
+    createTask,
+    deleteTask
 }
 
 export default TaskService

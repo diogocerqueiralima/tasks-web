@@ -1,5 +1,6 @@
 import Task from '@/app/domain/Task'
 import styles from './page.module.css'
+import TaskService from '@/app/services/TaskService'
 
 export default function TaskItem( { task }: { task: Task } ) {
 
@@ -33,7 +34,7 @@ export default function TaskItem( { task }: { task: Task } ) {
 
                 <button className={styles.steps}>Steps</button>
                 <button className={styles.edit}>Edit</button>
-                <button className={styles.delete}>Delete</button>
+                <button onClick={() => TaskService.deleteTask(task.id)} className={styles.delete}>Delete</button>
 
             </div>
 
