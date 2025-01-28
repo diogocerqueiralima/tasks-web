@@ -72,10 +72,10 @@ export default function Tasks() {
         }
 
         TaskService.createTask(title, description, date, tags)
-        .catch(() => {
-            setErrorMessage("An unexpected error has occurred.")
-            setErrorForm(true)
-        })
+            .catch(() => {
+                setErrorMessage("An unexpected error has occurred.")
+                setErrorForm(true)
+            })
 
     }
 
