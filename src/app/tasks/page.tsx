@@ -89,7 +89,7 @@ export default function Tasks() {
 
             { isLoading && <Loader /> }
 
-            { !isLoading && !error && tasks.length > 0 &&
+            { !isLoading && !error &&
 
                 <Pagination title="My tasks" items={tasks} itemsPerPage={3} renderItem={(item) => <TaskItem task={item} />} onOpen={() => setViewForm(true)} />
 

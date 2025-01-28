@@ -37,7 +37,7 @@ export default function Pagination<T extends { id: string | number, title: strin
 
     const hasPreviousPage = () => currentPage > 1
 
-    const getTotalPages = () => Math.ceil(getItemsFilterBySearch().length / itemsPerPage);
+    const getTotalPages = () => Math.max(Math.ceil(getItemsFilterBySearch().length / itemsPerPage), 1);
 
     const getItemsFilterBySearch = () =>
         items
@@ -69,6 +69,9 @@ export default function Pagination<T extends { id: string | number, title: strin
             </div>
 
             <div className={styles.content}>
+
+                { items.length == 0 && <p>There is no item to list</p> }
+
                 { getItems().map(item => <div key={item.id} className={styles.item}> { renderItem(item) } </div>) }
             </div>
 
