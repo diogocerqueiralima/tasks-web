@@ -38,16 +38,15 @@ function createTask(title: string, description: string, deadline: string, tags: 
             }
         )
     })
-        .then(response => {
+    .then(response => {
 
-            if (response.status == 0) {
-                window.location.href = "http://localhost:8080"
-                return { data: [] }
-            }
+        if (response.status == 0) {
+            window.location.href = "http://localhost:8080"
+            return { data: null }
+        }
 
-            return response.json()
-        })
-        .then(() => window.location.href = "/tasks")
+        return response.json()
+    })
 
 }
 
@@ -70,16 +69,15 @@ function updateTask(id: number, title: string, description: string, deadline: st
             }
         )
     })
-        .then(response => {
+    .then(response => {
 
-            if (response.status == 0) {
-                window.location.href = "http://localhost:8080"
-                return { data: [] }
-            }
+        if (response.status == 0) {
+            window.location.href = "http://localhost:8080"
+            return { data: null }
+        }
 
-            return response.json()
-        })
-        .then(() => window.location.href = "/tasks")
+        return response.json()
+    })
 
 }
 
@@ -94,12 +92,11 @@ function deleteTask(id: number) {
 
             if (response.status == 0) {
                 window.location.href = "http://localhost:8080"
-                return { data: [] }
+                return {}
             }
 
             return response.json()
         })
-        .then(() => window.location.href = "/tasks")
 
 }
 

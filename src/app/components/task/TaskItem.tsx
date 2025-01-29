@@ -1,56 +1,23 @@
 import Task, { Tag } from '@/app/domain/Task'
 import styles from './page.module.css'
-import TaskService from '@/app/services/TaskService'
 import { useState } from 'react'
-import Toast from '../toast/Toast'
 import Form, { StringArrayField, StringField } from '../form/Form'
+import { useTasks } from '@/app/context/TaskContext'
 
 export default function TaskItem( { task }: { task: Task } ) {
 
     const [viewForm, setViewForm] = useState(false)
-    const [errorForm, setErrorForm] = useState(false)
-    const [errorMessage, setErrorMessage] = useState("")
     const [titleEdit, setTitleEdit] = useState("")
     const [descriptionEdit, setDescriptionEdit] = useState("")
     const [dateEdit, setDateEdit] = useState("")
     const [tagsEdit, setTagsEdit] = useState<string[]>([])
+    const { deleteTask, updateTask } = useTasks();
 
     function onOpenEdit() {
 
         setTitleEdit(task.title)
         setDescriptionEdit(task.description)
         setTagsEdit(task.tags)
-
-    }
-
-    function onEdit() {
-
-        if (!titleEdit.trim() || !descriptionEdit.trim()) {
-            setErrorMessage("The title or description cannot be blank.")
-            setErrorForm(true)
-            return
-        }
-
-        const today = new Date();
-        const selectedDate = new Date(dateEdit);
-
-        if (isNaN(selectedDate.getTime()) || selectedDate <= today) {
-            setErrorMessage("Please select a valid date that is later than today.")
-            setErrorForm(true)
-            return
-        }
-
-        if (tagsEdit.length == 0) {
-            setErrorMessage("Please provide at least one tag.")
-            setErrorForm(true)
-            return
-        }
-
-        TaskService.updateTask(task.id, titleEdit, descriptionEdit, dateEdit, tagsEdit)
-                .catch(() => {
-                    setErrorMessage("An unexpected error has occurred.")
-                    setErrorForm(true)
-                })
 
     }
 
@@ -64,8 +31,6 @@ export default function TaskItem( { task }: { task: Task } ) {
     return (
 
         <div className={styles.task}>
-
-            { errorForm && <Toast icon='bx bxs-error' message={errorMessage} time={5000} removeToast={() => { setErrorForm(false) }} /> }
 
             <div className={styles.left}>
 
@@ -93,13 +58,13 @@ export default function TaskItem( { task }: { task: Task } ) {
 
                 <button className={styles.steps}>Steps</button>
                 <button onClick={() => { setViewForm(true); onOpenEdit() }} className={styles.edit}>Edit</button>
-                <button onClick={() => TaskService.deleteTask(task.id)} className={styles.delete}>Delete</button>
+                <button onClick={() => deleteTask(task.id)} className={styles.delete}>Delete</button>
 
             </div>
 
             { viewForm &&
 
-                <Form title='Edit Task' fields={fields} onClose={() => setViewForm(false)} onSave={onEdit} />
+                <Form title='Edit Task' fields={fields} onClose={() => setViewForm(false)} onSave={() => updateTask(task.id, titleEdit, descriptionEdit, dateEdit, tagsEdit)} />
 
             }
 

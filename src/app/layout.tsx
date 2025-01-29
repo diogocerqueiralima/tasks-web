@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
 import Header from "./components/header/Header";
+import { TaskProvider } from "./context/TaskContext";
 
 const roboto = Roboto({
   variable: "--roboto",
@@ -29,7 +30,9 @@ export default function RootLayout({
 
           <Header />
 
-          {children}
+          <TaskProvider>
+            {children}
+          </TaskProvider>
 
         </div>
 
